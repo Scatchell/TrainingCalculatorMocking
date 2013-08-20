@@ -1,0 +1,7 @@
+## Generated files
+out
+##
+## IntelliJ IDEA specific files
+.idea/
+mockito_demo.iml
+*.iml
