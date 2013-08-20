@@ -9,7 +9,7 @@ public class CalculatorTest {
 
     @Before
     public void setUp() {
-        calc = new Calculator();
+        calc = new Calculator(new Randomizer());
     }
 
     @Test
@@ -39,6 +39,7 @@ public class CalculatorTest {
 
     @Test
     public void shouldMultiplyAgainstRandomNumber() {
+        calc = new Calculator(new RandomizerStub());
         assertThat(calc.multRandom(5), is(50.0));
     }
 }
