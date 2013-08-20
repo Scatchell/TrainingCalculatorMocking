@@ -19,7 +19,13 @@ public class Calculator {
     }
 
     public double multRandom(double number) {
-        return formatTwoDecimalPoints(randomizer.random() * number);
+        double result = 0.0;
+        if(number > 10)
+            result = randomizer.randomGreaterThanTen() * number;
+        else
+            result = randomizer.random() * number;
+
+        return formatTwoDecimalPoints(result);
     }
 
     private double formatTwoDecimalPoints(double number) {

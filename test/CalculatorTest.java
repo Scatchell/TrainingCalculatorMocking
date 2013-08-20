@@ -3,13 +3,17 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CalculatorTest {
     Calculator calc;
+    Randomizer randomizer;
 
     @Before
     public void setUp() {
-        calc = new Calculator(new Randomizer());
+        randomizer = mock(Randomizer.class);
+        calc = new Calculator(randomizer);
     }
 
     @Test
@@ -39,7 +43,12 @@ public class CalculatorTest {
 
     @Test
     public void shouldMultiplyAgainstRandomNumber() {
-        calc = new Calculator(new RandomizerStub());
+        when(randomizer.random()).thenReturn(10.0);
         assertThat(calc.multRandom(5), is(50.0));
+    }
+
+    @Test
+    public void shouldCallMultGreaterThanTenMethod() {
+
     }
 }
