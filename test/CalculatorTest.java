@@ -3,8 +3,7 @@ import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CalculatorTest {
     Calculator calc;
@@ -45,10 +44,12 @@ public class CalculatorTest {
     public void shouldMultiplyAgainstRandomNumber() {
         when(randomizer.random()).thenReturn(10.0);
         assertThat(calc.multRandom(5), is(50.0));
+        verify(randomizer, never()).randomGreaterThanTen();
     }
 
     @Test
-    public void shouldCallMultGreaterThanTenMethod() {
-
+    public void shouldCallMultGreaterThanTenMethodWhenNumberIsGreaterThanTen() {
+        calc.multRandom(11);
+        verify(randomizer).randomGreaterThanTen();
     }
 }
